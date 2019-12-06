@@ -7,6 +7,20 @@ const ProfileCard = () => (
       <View style={styles.cardImageContainer}>
         <Image style={styles.cardImage} source={require('./usericon.png')} />
       </View>
+      <View>
+        <Text style={styles.cardName}>John Doe</Text>
+      </View>
+      <View>
+        <Text style={styles.cardOccupation}>React Native Developer</Text>
+      </View>
+      <View>
+        <Text style={styles.cardDescription}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+      </View>
     </View>
   </View>
 );
@@ -27,8 +41,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     backgroundColor: profileCardColor,
-    width: 300,
-    height: 400,
+    width: '90%',
+    height: '98%',
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 20,
@@ -48,6 +62,28 @@ const styles = StyleSheet.create({
   cardImage: {
     width: 80,
     height: 80,
+  },
+  cardName: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 24,
+    marginTop: 30,
+    textShadowColor: 'black',
+    textShadowOffset: {width: 5, height: 3},
+    textShadowRadius: 5,
+  },
+  cardOccupation: {
+    borderColor: 'black',
+    borderBottomWidth: 2,
+    fontWeight: 'bold',
+  },
+  cardDescription: {
+    textAlign: 'justify',
+    fontStyle: 'italic',
+    marginTop: 10,
+    marginRight: 30,
+    marginLeft: 30,
+    marginBottom: 10,
   },
   centeredText: {
     textAlign: 'center',
