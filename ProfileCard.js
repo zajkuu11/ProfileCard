@@ -1,29 +1,59 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import PropTypes from 'prop-types';
+import update from 'immutability-helper';
+import {Image, StyleSheet, Text, View, TouchableHighlight} from 'react-native';
 
-const ProfileCard = () => (
-  <View style={styles.container}>
-    <View style={styles.cardContainer}>
-      <View style={styles.cardImageContainer}>
-        <Image style={styles.cardImage} source={require('./usericon.png')} />
+const userImage = require('./usericon.png');
+
+const data = [
+  {
+    image: userImage,
+    name: 'John Doe',
+    occupation: 'React Native Developer',
+    description:
+      'John is a really great Javascript developer. ' +
+      'He loves using JS to build React Native applications ' +
+      'for iOS and Android',
+    showThumbnail: true,
+  },
+];
+
+const ProfileCard = props => {
+  const {image, name, occupation, description, onPress, showThumbnail} = props;
+  let containerStyles = [styles.cardContainer];
+
+  if (showThumbnail) {
+    containerStyles.push(styles.cardThumbnail);
+  }
+
+  return (
+    <TouchableHighlight onPress={onPress}>
+      <View style={[containerStyles]}>
+        <View style={styles.cardImageContainer}>
+          <Image style={styles.cardImage} source={image} />
+        </View>
+        <View>
+          <Text style={styles.cardName}>{name}</Text>
+        </View>
+        <View style={styles.cardOccuaptionContainer}>
+          <Text style={styles.cardOccupation}>{occupation}</Text>
+        </View>
+        <View>
+          <Text style={styles.cardDescription}>{description}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={styles.cardName}>John Doe</Text>
-      </View>
-      <View>
-        <Text style={styles.cardOccupation}>React Native Developer</Text>
-      </View>
-      <View>
-        <Text style={styles.cardDescription}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.
-        </Text>
-      </View>
-    </View>
-  </View>
-);
+    </TouchableHighlight>
+  );
+};
+
+ProfileCard.propTypes = {
+  image: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  occupation: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  showThumbnail: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+};
 
 const CenteredText = props => (
   <Text style={[styles.centeredText, props.style]}>{props.children} </Text>
@@ -41,8 +71,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     backgroundColor: profileCardColor,
-    width: '90%',
-    height: '98%',
+    width: 300,
+    height: 400,
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 20,
@@ -62,28 +92,6 @@ const styles = StyleSheet.create({
   cardImage: {
     width: 80,
     height: 80,
-  },
-  cardName: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginTop: 30,
-    textShadowColor: 'black',
-    textShadowOffset: {width: 5, height: 3},
-    textShadowRadius: 5,
-  },
-  cardOccupation: {
-    borderColor: 'black',
-    borderBottomWidth: 2,
-    fontWeight: 'bold',
-  },
-  cardDescription: {
-    textAlign: 'justify',
-    fontStyle: 'italic',
-    marginTop: 10,
-    marginRight: 30,
-    marginLeft: 30,
-    marginBottom: 10,
   },
   centeredText: {
     textAlign: 'center',
